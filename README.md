@@ -7,14 +7,17 @@ So with this project, I can make something that will be of use to me and others 
 
 ## User Stories
 - As a user, I want to be able to create a workout program
-- As a user, I want to be able to add exercises to a workout program
-- As a user, I want to be able to delete exercises in a workout program
+- As a user, I want to be able to add/delete sessions to a program
+- As a user, I want to be able to add/delete exercises to a session
 - As a user, I want to be able to view my workout program
 - As a user, I want to be able to view individual workout sessions
 
 
 #### In the future:
 - As a user, I want to be able to start a workout session
+- As a user, I want to be able to edit a program/sessions
+- As a user, I want to be able to save information to a database/csv
 - As a user, I want to see my weight progress
+
 
 
