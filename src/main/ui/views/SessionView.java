@@ -2,7 +2,6 @@ package ui.views;
 
 import model.Exercise;
 import model.ExerciseContainer;
-import model.Program;
 import model.Session;
 import ui.Command;
 import ui.WorkoutTrackerApplication;
@@ -15,17 +14,17 @@ import java.util.Optional;
 public class SessionView implements View {
     private WorkoutTrackerApplication app;
     private Session session;
-    private static final List<Command> commands;
+    private static final List<Command> COMMANDS;
 
     // MODIFIES: this
     // EFFECTS: initializes commands
     static {
-        commands = new ArrayList<>();
-        commands.add(new Command("display", "displays session overview"));
-        commands.add(new Command("back", "go to previous menu"));
-        commands.add(new Command("add", "add a new exercise"));
-        commands.add(new Command("delete", "permanently delete an exercise"));
-        commands.add(new Command("quit", "exit application"));
+        COMMANDS = new ArrayList<>();
+        COMMANDS.add(new Command("display", "displays session overview"));
+        COMMANDS.add(new Command("back", "go to previous menu"));
+        COMMANDS.add(new Command("add", "add a new exercise"));
+        COMMANDS.add(new Command("delete", "permanently delete an exercise"));
+        COMMANDS.add(new Command("quit", "exit application"));
     }
 
     // MODIFIES: this
@@ -39,7 +38,7 @@ public class SessionView implements View {
     public void displayMenu() {
         System.out.println("Commands:");
 
-        for (Command c : commands) {
+        for (Command c : COMMANDS) {
             System.out.println(c);
         }
 
@@ -72,7 +71,7 @@ public class SessionView implements View {
 
     @Override
     public void display() {
-        int n  = session.numberOfExercises();
+        int n = session.numberOfExercises();
 
         System.out.println(session.getName());
 

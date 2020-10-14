@@ -5,7 +5,6 @@ import model.Session;
 import ui.Command;
 import ui.WorkoutTrackerApplication;
 
-import javax.swing.text.html.Option;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
@@ -14,17 +13,17 @@ import java.util.Optional;
 public class ProgramView implements View {
     private WorkoutTrackerApplication app;
     private Program program;
-    private static final List<Command> commands;
+    private static final List<Command> COMMANDS;
 
     // MODIFIES: this
     // EFFECTS: instantiates commands
     static {
-        commands = new ArrayList<>();
-        commands.add(new Command("display", "displays program overview"));
-        commands.add(new Command("select", "select a session"));
-        commands.add(new Command("add", "add a new session"));
-        commands.add(new Command("delete", "permanently delete a session"));
-        commands.add(new Command("quit", "exit application"));
+        COMMANDS = new ArrayList<>();
+        COMMANDS.add(new Command("display", "displays program overview"));
+        COMMANDS.add(new Command("select", "select a session"));
+        COMMANDS.add(new Command("add", "add a new session"));
+        COMMANDS.add(new Command("delete", "permanently delete a session"));
+        COMMANDS.add(new Command("quit", "exit application"));
 
     }
 
@@ -39,7 +38,7 @@ public class ProgramView implements View {
     public void displayMenu() {
         System.out.println("Commands:");
 
-        for (Command c : commands) {
+        for (Command c : COMMANDS) {
             System.out.println(c);
         }
 
@@ -72,7 +71,7 @@ public class ProgramView implements View {
 
     @Override
     public void display() {
-        int n  = program.numberOfSessions();
+        int n = program.numberOfSessions();
 
         System.out.println(program.getName());
 
