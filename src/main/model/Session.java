@@ -1,11 +1,16 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 // Represents a group of exercises
-public class Session {
+// referenced JsonSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git)
+public class Session implements Writable {
     private String name;
     private List<ExerciseContainer> exercises;
 
@@ -75,5 +80,22 @@ public class Session {
     // EFFECTS: returns string representation of Session
     public String toString() {
         return name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("exercises", exercisesToJson());
+        return json;
+    }
+
+    // EFFECTS: returns exercises in this session as a JSON array
+    private JSONArray exercisesToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (ExerciseContainer ec : exercises) {
+            jsonArray.put(ec.toJson());
+        }
+        return jsonArray;
     }
 }

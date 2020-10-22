@@ -1,0 +1,31 @@
+{
+  "name": "My Program",
+  "sessions": [
+    {
+      "name": "A",
+      "exercises": [
+        {
+          "exercise": {
+            "name": "pushup",
+            "description": ""
+          },
+          "sets": 2,
+          "reps": 1
+        },
+        {
+          "exercise": {
+            "name": "jump",
+            "description": ""
+          },
+          "sets": 1,
+          "reps": 10
+        }
+      ]
+    },
+    {
+      "name": "B",
+      "exercises": [
+      ]
+    }
+  ]
+}

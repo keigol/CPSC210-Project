@@ -1,11 +1,17 @@
 package model;
 
+import org.json.JSONArray;
+import org.json.JSONObject;
+import persistence.JsonReader;
+import persistence.Writable;
+
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
 // Represents a weight-training/fitness program
-public class Program {
+// referenced JsonSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git)
+public class Program implements Writable {
     private String name;
     private List<Session> sessions;
 
@@ -67,5 +73,21 @@ public class Program {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("name", name);
+        json.put("sessions", sessionsToJson());
+        return json;
+    }
+
+    private JSONArray sessionsToJson() {
+        JSONArray jsonArray = new JSONArray();
+        for (Session s : sessions) {
+            jsonArray.put(s.toJson());
+        }
+        return jsonArray;
     }
 }

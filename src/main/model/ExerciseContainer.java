@@ -1,8 +1,14 @@
 package model;
 
+import org.json.JSONObject;
+import persistence.Writable;
+
+import java.util.Objects;
+
 // Represents a container for an exercise, and its sets and reps.
-// note: not a subtype of Exercise
-public class ExerciseContainer {
+// referenced JsonSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git)
+// note: For use as part of a session, not a subtype of Exercise
+public class ExerciseContainer implements Writable {
 
     private Exercise exercise;
     private int sets; // number of cycles of reps
@@ -47,5 +53,33 @@ public class ExerciseContainer {
     // EFFECTS: returns string representation of object
     public String toString() {
         return exercise.getName() + " " + sets + "x" + reps;
+    }
+
+    @Override
+    public JSONObject toJson() {
+        JSONObject json = new JSONObject();
+        json.put("exercise", exercise.toJson());
+        json.put("sets", sets);
+        json.put("reps", reps);
+        return json;
+    }
+
+    @Override
+    public boolean equals(Object o) {
+        if (this == o) {
+            return true;
+        }
+        if (o == null || getClass() != o.getClass()) {
+            return false;
+        }
+        ExerciseContainer that = (ExerciseContainer) o;
+        return sets == that.sets
+                && reps == that.reps
+                && exercise.equals(that.exercise);
+    }
+
+    @Override
+    public int hashCode() {
+        return Objects.hash(exercise, sets, reps);
     }
 }
