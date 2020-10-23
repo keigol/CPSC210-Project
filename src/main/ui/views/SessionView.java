@@ -24,7 +24,7 @@ public class SessionView implements View {
         COMMANDS.add(new Command("back", "go to previous menu"));
         COMMANDS.add(new Command("add", "add a new exercise"));
         COMMANDS.add(new Command("delete", "permanently delete an exercise"));
-        COMMANDS.add(new Command("quit", "exit application"));
+        COMMANDS.add(new Command("quit", "save and exit application"));
     }
 
     // MODIFIES: this
@@ -59,8 +59,6 @@ public class SessionView implements View {
                 break;
             case "delete":
                 deleteExercise();
-                break;
-            case "quit":
                 break;
             default:
                 System.out.println("Invalid command");

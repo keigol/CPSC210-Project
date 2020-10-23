@@ -23,8 +23,7 @@ public class ProgramView implements View {
         COMMANDS.add(new Command("select", "select a session"));
         COMMANDS.add(new Command("add", "add a new session"));
         COMMANDS.add(new Command("delete", "permanently delete a session"));
-        COMMANDS.add(new Command("quit", "exit application"));
-
+        COMMANDS.add(new Command("quit", "save and exit application"));
     }
 
     // MODIFIES: this
@@ -59,8 +58,6 @@ public class ProgramView implements View {
                 break;
             case "delete":
                 deleteSession();
-                break;
-            case "quit":
                 break;
             default:
                 System.out.println("Invalid command");
