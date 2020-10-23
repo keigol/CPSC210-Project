@@ -20,6 +20,7 @@ public class SessionView implements View {
     // EFFECTS: initializes commands
     static {
         COMMANDS = new ArrayList<>();
+        COMMANDS.add(new Command("workout", "start this workout session!"));
         COMMANDS.add(new Command("display", "displays session overview"));
         COMMANDS.add(new Command("back", "go to previous menu"));
         COMMANDS.add(new Command("add", "add a new exercise"));
@@ -48,6 +49,9 @@ public class SessionView implements View {
     @Override
     public void processCommand(String command) {
         switch (command) {
+            case "workout":
+                workout();
+                break;
             case "display":
                 display();
                 break;
@@ -117,6 +121,10 @@ public class SessionView implements View {
         } else {
             System.out.println("Invalid name");
         }
+    }
+
+    private void workout() {
+
     }
 
 }

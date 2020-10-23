@@ -11,15 +11,13 @@ So with this project, I can make something that will be of use to me and others 
 - As a user, I want to be able to add/delete exercises to a session
 - As a user, I want to be able to view my workout program
 - As a user, I want to be able to view individual workout sessions
+- As a user, I want to be able to start a workout session
 
 - As a user, I want to be able to automatically save my data to a file
 - As a user, I want to be able to automatically load my data from a file on startup
 
 
 #### In the future:
-- As a user, I want to be able to start a workout session
-- As a user, I want to be able to edit a program/sessions
-- As a user, I want to be able to save information to a database/csv
 - As a user, I want to see my weight progress
 
 
