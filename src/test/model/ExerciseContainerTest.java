@@ -1,5 +1,6 @@
 package model;
 
+import com.sun.org.apache.xpath.internal.operations.String;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
@@ -40,14 +41,27 @@ public class ExerciseContainerTest {
     }
 
     @Test
-    public void testEquals() {
+    public void testEqualsEquals() {
         Exercise exercise2 = new Exercise("jump", "cardio");
         ExerciseContainer container2 = new ExerciseContainer(exercise, 1 ,1);
 
         assertTrue(exercise2.equals(exercise));
         assertTrue(container2.equals(container));
+    }
+
+    @Test
+    public void testEqualsNotEquals() {
+        Exercise exercise2 = new Exercise("not jump", "cardio");
+        ExerciseContainer container2 = new ExerciseContainer(exercise2, 1 ,1);
+        ExerciseContainer container3 = new ExerciseContainer(exercise2, 100 ,1);
+        ExerciseContainer container4 = new ExerciseContainer(exercise2, 1 ,100);
+
+        assertFalse(container.equals(container2));
+        assertFalse(container.equals(container3));
+        assertFalse(container.equals(container4));
         assertFalse(exercise.equals(null));
         assertFalse(container.equals(null));
+        assertFalse(exercise.equals(new String()));
     }
 
     @Test
