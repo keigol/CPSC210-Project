@@ -11,8 +11,7 @@ import java.util.List;
 import java.util.Optional;
 
 // View for individual workout sessions
-public class SessionView implements View {
-    private WorkoutTrackerApplication app;
+public class SessionView extends View {
     private Session session;
     private static final List<Command> COMMANDS;
 
@@ -20,7 +19,7 @@ public class SessionView implements View {
     // EFFECTS: initializes commands
     static {
         COMMANDS = new ArrayList<>();
-        COMMANDS.add(new Command("workout", "start this workout session!"));
+        //COMMANDS.add(new Command("workout", "start this workout session!"));
         COMMANDS.add(new Command("display", "displays session overview"));
         COMMANDS.add(new Command("back", "go to previous menu"));
         COMMANDS.add(new Command("add", "add a new exercise"));
@@ -31,27 +30,14 @@ public class SessionView implements View {
     // MODIFIES: this
     // EFFECTS: creates SessionView with app and session
     public SessionView(WorkoutTrackerApplication app, Session session) {
-        this.app = app;
+        super(app);
         this.session = session;
     }
 
-    @Override
-    public void displayMenu() {
-        System.out.println("Commands:");
-
-        for (Command c : COMMANDS) {
-            System.out.println(c);
-        }
-
-        System.out.println();
-    }
 
     @Override
     public void processCommand(String command) {
         switch (command) {
-            case "workout":
-                workout();
-                break;
             case "display":
                 display();
                 break;
@@ -84,6 +70,11 @@ public class SessionView implements View {
                 System.out.println("\t" + (i + 1) + ".) " + session.getExercises().get(i));
             }
         }
+    }
+
+    @Override
+    public List<Command> getCommands() {
+        return COMMANDS;
     }
 
     @Override
@@ -123,8 +114,7 @@ public class SessionView implements View {
         }
     }
 
-    private void workout() {
-
+    public void setSession(Session session) {
+        this.session = session;
     }
-
 }

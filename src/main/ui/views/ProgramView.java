@@ -10,8 +10,7 @@ import java.util.List;
 import java.util.Optional;
 
 // The starting view
-public class ProgramView implements View {
-    private WorkoutTrackerApplication app;
+public class ProgramView extends View {
     private Program program;
     private static final List<Command> COMMANDS;
 
@@ -29,19 +28,13 @@ public class ProgramView implements View {
     // MODIFIES: this
     // EFFECTS: creates a ProgramView instance
     public ProgramView(WorkoutTrackerApplication app) {
-        this.app = app;
+        super(app);
         program = app.getProgram();
     }
 
     @Override
-    public void displayMenu() {
-        System.out.println("Commands:");
-
-        for (Command c : COMMANDS) {
-            System.out.println(c);
-        }
-
-        System.out.println();
+    public List<Command> getCommands() {
+        return COMMANDS;
     }
 
     @Override
