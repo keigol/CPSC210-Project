@@ -38,4 +38,24 @@ public class ExerciseContainerTest {
     public void testToString() {
         assertEquals("jump 1x1", container.toString());
     }
+
+    @Test
+    public void testEquals() {
+        Exercise exercise2 = new Exercise("jump", "cardio");
+        ExerciseContainer container2 = new ExerciseContainer(exercise, 1 ,1);
+
+        assertTrue(exercise2.equals(exercise));
+        assertTrue(container2.equals(container));
+        assertFalse(exercise.equals(null));
+        assertFalse(container.equals(null));
+    }
+
+    @Test
+    public void testHashCode() {
+        Exercise exercise2 = new Exercise("jump", "cardio");
+        ExerciseContainer container2 = new ExerciseContainer(exercise, 1 ,1);
+
+        assertEquals(exercise.hashCode(), exercise2.hashCode());
+        assertEquals(container.hashCode(), container2.hashCode());
+    }
 }
