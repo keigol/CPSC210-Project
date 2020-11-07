@@ -1,10 +1,10 @@
-package ui;
+package ui.console;
 
 import model.Program;
 import persistence.JsonReader;
 import persistence.JsonWriter;
-import ui.views.ProgramView;
-import ui.views.View;
+import ui.console.views.ProgramView;
+import ui.console.views.View;
 
 import java.io.FileNotFoundException;
 import java.io.IOException;

@@ -1,9 +1,8 @@
-package ui.views;
+package ui.console.views;
 
-import ui.Command;
-import ui.WorkoutTrackerApplication;
+import ui.console.Command;
+import ui.console.WorkoutTrackerApplication;
 
-import java.util.ArrayList;
 import java.util.List;
 
 // Represents the functionality that a user currently has access to

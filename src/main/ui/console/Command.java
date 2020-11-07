@@ -1,4 +1,4 @@
-package ui;
+package ui.console;
 
 // Represents a command with a description
 public class Command {

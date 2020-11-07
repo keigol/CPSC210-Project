@@ -1,9 +1,11 @@
-package ui.views;
+package ui.console.views;
 
 import model.Program;
 import model.Session;
-import ui.Command;
-import ui.WorkoutTrackerApplication;
+import ui.console.Command;
+import ui.console.views.SessionView;
+import ui.console.views.View;
+import ui.console.WorkoutTrackerApplication;
 
 import java.util.ArrayList;
 import java.util.List;
