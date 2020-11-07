@@ -1,16 +1,17 @@
 package ui.graphical;
 
-import ui.graphical.screens.MainScreen;
+import ui.graphical.cards.MainScreen;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 
+// The main gui application
 public class WorkoutTracker extends JFrame {
 
-    MainScreen mainScreen;
-    SideMenu sideMenu;
+    private MainScreen mainScreen;
+    private SideMenu sideMenu;
 
     // MODIFIES: this
     // EFFECTS: Starts the WorkoutTracker application
@@ -18,7 +19,7 @@ public class WorkoutTracker extends JFrame {
         super("WorkoutTracker");
 
         mainScreen = new MainScreen();
-        sideMenu = new SideMenu();
+        sideMenu = new SideMenu(this);
 
         add(mainScreen, BorderLayout.CENTER);
         add(sideMenu, BorderLayout.WEST);
@@ -36,7 +37,11 @@ public class WorkoutTracker extends JFrame {
         setVisible(true);
     }
 
-//    // Centres frame on desktop (borrowed from B5-SpaceInvader)
+    public MainScreen getMainScreen() {
+        return mainScreen;
+    }
+
+    //    // Centres frame on desktop (borrowed from B5-SpaceInvader)
 //    // modifies: this
 //    // effects:  location of frame is set so frame is centred on desktop
 //    private void centreOnScreen() {
