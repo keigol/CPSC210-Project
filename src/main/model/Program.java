@@ -43,11 +43,6 @@ public class Program implements Writable {
         sessions.remove(i);
     }
 
-    // EFFECTS: returns size of sessions;
-    public int numberOfSessions() {
-        return sessions.size();
-    }
-
     public List<Session> getSessions() {
         return sessions;
     }
@@ -65,6 +60,11 @@ public class Program implements Writable {
             }
         }
         return session;
+    }
+
+    // EFFECTS: returns size of sessions;
+    public int numberOfSessions() {
+        return sessions.size();
     }
 
     public String getName() {

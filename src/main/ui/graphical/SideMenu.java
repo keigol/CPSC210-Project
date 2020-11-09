@@ -16,16 +16,10 @@ public class SideMenu extends JPanel implements ActionListener {
     public SideMenu(WorkoutTracker workoutTracker) {
         this.workoutTracker = workoutTracker;
 
-        setBackground(Color.orange); // tests visibility
+        setBackground(Color.WHITE); // tests visibility
         setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
 
-        JButton b1 = new JButton("Home");
-        JButton b2 = new JButton("My Program");
-        b1.addActionListener(this);
-        b2.addActionListener(this);
-
-        add(b1);
-        add(b2);
+        initializeButtons();
     }
 
     // MODIFIES: workoutTracker
@@ -35,13 +29,23 @@ public class SideMenu extends JPanel implements ActionListener {
         CardLayout cards = (CardLayout) workoutTracker.getMainScreen().getLayout();
         switch (e.getActionCommand()) {
             case "Home":
-                cards.show(workoutTracker.getMainScreen(), workoutTracker.getMainScreen().getCardNames()[0]);
+                cards.show(workoutTracker.getMainScreen(), "Home");
                 break;
             case "My Program":
-                cards.show(workoutTracker.getMainScreen(), workoutTracker.getMainScreen().getCardNames()[1]);
+                cards.show(workoutTracker.getMainScreen(), "My Program");
                 break;
             default:
                 break;
         }
+    }
+
+    private void initializeButtons() {
+        b1 = new JButton("Home");
+        b2 = new JButton("My Program");
+        b1.addActionListener(this);
+        b2.addActionListener(this);
+
+        add(b1);
+        add(b2);
     }
 }

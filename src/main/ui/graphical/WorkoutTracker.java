@@ -1,5 +1,6 @@
 package ui.graphical;
 
+import model.Program;
 import ui.graphical.cards.MainScreen;
 
 import javax.swing.*;
@@ -9,7 +10,7 @@ import java.awt.event.WindowEvent;
 
 // The main gui application
 public class WorkoutTracker extends JFrame {
-
+    private Program program;
     private MainScreen mainScreen;
     private SideMenu sideMenu;
 
@@ -18,13 +19,27 @@ public class WorkoutTracker extends JFrame {
     public WorkoutTracker() {
         super("WorkoutTracker");
 
-        mainScreen = new MainScreen();
-        sideMenu = new SideMenu(this);
+        program = new Program("My Program");
 
-        add(mainScreen, BorderLayout.CENTER);
-        add(sideMenu, BorderLayout.WEST);
+        initializeScreenComponents();
+        initializePersistenceDialogs();
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        setExtendedState(JFrame.MAXIMIZED_BOTH);
+        pack();
+        setVisible(true);
+    }
+
+    // EFFECTS: creates a new instance of WorkoutTracker
+    public static void main(String[] args) {
+        new WorkoutTracker();
+    }
+
+    public MainScreen getMainScreen() {
+        return mainScreen;
+    }
+
+    private void initializePersistenceDialogs() {
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
@@ -32,23 +47,15 @@ public class WorkoutTracker extends JFrame {
                 dispose();
             }
         });
-
-        pack();
-        setVisible(true);
     }
 
-    public MainScreen getMainScreen() {
-        return mainScreen;
+    private void initializeScreenComponents() {
+        mainScreen = new MainScreen(program);
+        sideMenu = new SideMenu(this);
+
+        add(mainScreen, BorderLayout.CENTER);
+        add(sideMenu, BorderLayout.WEST);
     }
-
-    //    // Centres frame on desktop (borrowed from B5-SpaceInvader)
-//    // modifies: this
-//    // effects:  location of frame is set so frame is centred on desktop
-//    private void centreOnScreen() {
-//        Dimension scrn = Toolkit.getDefaultToolkit().getScreenSize();
-//        setLocation((scrn.width - getWidth()) / 2, (scrn.height - getHeight()) / 2);
-//    }
-
 
     // EFFECTS: Opens a dialog box to prompt user to save data
     // if yes, saves data to file
@@ -61,10 +68,5 @@ public class WorkoutTracker extends JFrame {
     // EFFECTS: Opens a dialog box to prompt user to either load data or start a blank application
     private void loadDataPrompt() {
         // TODO
-    }
-
-    // EFFECTS: creates a new instance of WorkoutTracker
-    public static void main(String[] args) {
-        new WorkoutTracker();
     }
 }

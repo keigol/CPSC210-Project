@@ -42,14 +42,14 @@ public class Session implements Writable {
         exercises.remove(i);
     }
 
+    public List<ExerciseContainer> getExercises() {
+        return exercises;
+    }
+
     // REQUIRES: i is in range of exercises length
     // EFFECTS: returns exercise by given index
     public ExerciseContainer getExercise(int i) {
         return exercises.get(i);
-    }
-
-    public List<ExerciseContainer> getExercises() {
-        return exercises;
     }
 
     // EFFECTS: returns an optional ExerciseContainer
