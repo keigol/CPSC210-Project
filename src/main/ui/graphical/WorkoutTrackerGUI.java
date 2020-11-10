@@ -1,25 +1,38 @@
 package ui.graphical;
 
-import model.Program;
+import model.WorkoutProgram;
+import persistence.JsonReader;
+import persistence.JsonWriter;
 import ui.graphical.cards.MainScreen;
 
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.IOException;
 
 // The main gui application
-public class WorkoutTracker extends JFrame {
-    private Program program;
+public class WorkoutTrackerGUI extends JFrame {
+    private static final String JSON_STORE = "./data/user_program.json";
+
+    private WorkoutProgram workoutProgram;
     private MainScreen mainScreen;
     private SideMenu sideMenu;
+    private JsonWriter jsonWriter;
+    private JsonReader jsonReader;
 
     // MODIFIES: this
-    // EFFECTS: Starts the WorkoutTracker application
-    public WorkoutTracker() {
-        super("WorkoutTracker");
+    // EFFECTS: Starts the WorkoutTrackerGUI application
+    public WorkoutTrackerGUI() {
+        super("WorkoutTrackerGUI");
 
-        program = new Program("My Program");
+        jsonWriter = new JsonWriter(JSON_STORE);
+        jsonReader = new JsonReader(JSON_STORE);
+        try {
+            workoutProgram = jsonReader.read();
+        } catch (IOException e) {
+            workoutProgram = new WorkoutProgram("My Workout Program");
+        }
 
         initializeScreenComponents();
         initializePersistenceDialogs();
@@ -30,9 +43,13 @@ public class WorkoutTracker extends JFrame {
         setVisible(true);
     }
 
-    // EFFECTS: creates a new instance of WorkoutTracker
+    // EFFECTS: creates a new instance of WorkoutTrackerGUI
     public static void main(String[] args) {
-        new WorkoutTracker();
+        new WorkoutTrackerGUI();
+    }
+
+    public WorkoutProgram getWorkoutProgram() {
+        return workoutProgram;
     }
 
     public MainScreen getMainScreen() {
@@ -50,7 +67,7 @@ public class WorkoutTracker extends JFrame {
     }
 
     private void initializeScreenComponents() {
-        mainScreen = new MainScreen(program);
+        mainScreen = new MainScreen(this);
         sideMenu = new SideMenu(this);
 
         add(mainScreen, BorderLayout.CENTER);

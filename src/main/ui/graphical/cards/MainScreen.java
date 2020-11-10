@@ -1,37 +1,37 @@
 package ui.graphical.cards;
 
-import com.sun.org.apache.bcel.internal.generic.ARRAYLENGTH;
-import model.Program;
+import ui.graphical.WorkoutTrackerGUI;
 
 import javax.swing.*;
 import java.awt.*;
 import java.util.*;
-import java.util.List;
 
 // The main screen which contains different cards
 public class MainScreen extends JPanel {
-    private Map<String, JPanel> cards;
+    private WorkoutTrackerGUI application;
+    private Map<String, Card> cards;
 
     // MODIFIES: this
     // EFFECTS: represents the main screen and it's cards
-    public MainScreen(Program program) {
+    public MainScreen(WorkoutTrackerGUI application) {
+        this.application = application;
         cards = new HashMap<>();
         setLayout(new CardLayout());
-        initializeCards(program);
+        initializeCards();
     }
 
-    private void initializeCards(Program program) {
-        HomeCard homeCard = new HomeCard(program);
-        MyProgramCard myProgramCard = new MyProgramCard(program);
+    private void initializeCards() {
+        HomeCard homeCard = new HomeCard(application);
+        MyProgramCard myProgramCard = new MyProgramCard(application);
 
-        cards.put(homeCard.getTitle(), homeCard);
-        cards.put(myProgramCard.getTitle(), myProgramCard);
+        cards.put(HomeCard.TITLE, homeCard);
+        cards.put(MyProgramCard.TITLE, myProgramCard);
 
-        add(homeCard, homeCard.getTitle());
-        add(myProgramCard, myProgramCard.getTitle());
+        add(homeCard, HomeCard.TITLE);
+        add(myProgramCard, MyProgramCard.TITLE);
     }
 
-    public Map<String, JPanel> getCards() {
+    public Map<String, Card> getCards() {
         return cards;
     }
 }

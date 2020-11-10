@@ -1,10 +1,8 @@
 package ui.console.views;
 
-import model.Program;
+import model.WorkoutProgram;
 import model.Session;
 import ui.console.Command;
-import ui.console.views.SessionView;
-import ui.console.views.View;
 import ui.console.WorkoutTrackerApplication;
 
 import java.util.ArrayList;
@@ -13,14 +11,14 @@ import java.util.Optional;
 
 // The starting view
 public class ProgramView extends View {
-    private Program program;
+    private WorkoutProgram workoutProgram;
     private static final List<Command> COMMANDS;
 
     // MODIFIES: this
     // EFFECTS: instantiates commands
     static {
         COMMANDS = new ArrayList<>();
-        COMMANDS.add(new Command("display", "displays program overview"));
+        COMMANDS.add(new Command("display", "displays workoutProgram overview"));
         COMMANDS.add(new Command("select", "select a session"));
         COMMANDS.add(new Command("add", "add a new session"));
         COMMANDS.add(new Command("delete", "permanently delete a session"));
@@ -31,7 +29,7 @@ public class ProgramView extends View {
     // EFFECTS: creates a ProgramView instance
     public ProgramView(WorkoutTrackerApplication app) {
         super(app);
-        program = app.getProgram();
+        workoutProgram = app.getProgram();
     }
 
     @Override
@@ -63,15 +61,15 @@ public class ProgramView extends View {
 
     @Override
     public void display() {
-        int n = program.numberOfSessions();
+        int n = workoutProgram.numberOfSessions();
 
-        System.out.println(program.getName());
+        System.out.println(workoutProgram.getName());
 
         if (n == 0) {
             System.out.println("\t No workout sessions available");
         } else {
             for (int i = 0; i < n; i++) {
-                System.out.println("\t" + (i + 1) + ".) " + program.getSessions().get(i));
+                System.out.println("\t" + (i + 1) + ".) " + workoutProgram.getSessions().get(i));
             }
         }
     }
@@ -82,7 +80,7 @@ public class ProgramView extends View {
     public void changeView() {
         System.out.print("Enter name of session to view: ");
         String name = app.getScanner().nextLine();
-        Optional<Session> searchedSession = program.getSessionByName(name);
+        Optional<Session> searchedSession = workoutProgram.getSessionByName(name);
 
         if (searchedSession.isPresent()) {
             app.setView(new SessionView(app, searchedSession.get()));
@@ -91,23 +89,23 @@ public class ProgramView extends View {
         }
     }
 
-    // MODIFIES: program
-    // EFFECTS: add session to program
+    // MODIFIES: workoutProgram
+    // EFFECTS: add session to workoutProgram
     private void addSession() {
         System.out.println("Enter name for session to create: ");
         String name = app.getScanner().nextLine();
-        program.addSession(new Session(name));
+        workoutProgram.addSession(new Session(name));
     }
 
-    // MODIFIES: program
-    // EFFECTS: delete session from program
+    // MODIFIES: workoutProgram
+    // EFFECTS: delete session from workoutProgram
     private void deleteSession() {
         System.out.print("Enter name of session to delete: ");
         String name = app.getScanner().nextLine();
-        Optional<Session> searchedSession = program.getSessionByName(name);
+        Optional<Session> searchedSession = workoutProgram.getSessionByName(name);
 
         if (searchedSession.isPresent()) {
-            program.removeSession(searchedSession.get());
+            workoutProgram.removeSession(searchedSession.get());
         } else {
             System.out.println("Invalid name");
         }

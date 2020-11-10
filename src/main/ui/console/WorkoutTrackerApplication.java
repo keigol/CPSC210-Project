@@ -1,6 +1,6 @@
 package ui.console;
 
-import model.Program;
+import model.WorkoutProgram;
 import persistence.JsonReader;
 import persistence.JsonWriter;
 import ui.console.views.ProgramView;
@@ -15,7 +15,7 @@ import java.util.Scanner;
 public class WorkoutTrackerApplication {
     private static final String JSON_STORE = "./data/user_program.json";
     private Scanner scanner;
-    private Program program;
+    private WorkoutProgram workoutProgram;
     private View view;
     private JsonWriter jsonWriter;
     private JsonReader jsonReader;
@@ -35,8 +35,8 @@ public class WorkoutTrackerApplication {
         return scanner;
     }
 
-    public Program getProgram() {
-        return program;
+    public WorkoutProgram getProgram() {
+        return workoutProgram;
     }
 
     // MODIFIES: this
@@ -63,7 +63,7 @@ public class WorkoutTrackerApplication {
     }
 
     // MODIFIES: this
-    // EFFECTS: initializes scanner, program and view
+    // EFFECTS: initializes scanner, workoutProgram and view
     private void init() {
         scanner = new Scanner(System.in);
         try {
@@ -71,28 +71,28 @@ public class WorkoutTrackerApplication {
         } catch (IOException e) {
             System.out.println("Unable to read from file: " + JSON_STORE);
             System.out.println("Creating new save file ...");
-            program = new Program("My Workout Program");
+            workoutProgram = new WorkoutProgram("My Workout Program");
             saveProgram();
         }
         view = new ProgramView(this);
     }
 
-    // EFFECTS: saves program to file
+    // EFFECTS: saves workoutProgram to file
     private void saveProgram() {
         try {
             jsonWriter.open();
-            jsonWriter.write(program);
+            jsonWriter.write(workoutProgram);
             jsonWriter.close();
-            System.out.println("Saved " + program.getName() + " to " + JSON_STORE);
+            System.out.println("Saved " + workoutProgram.getName() + " to " + JSON_STORE);
         } catch (FileNotFoundException e) {
             System.out.println("Unable to write to file: " + JSON_STORE);
         }
     }
 
-    // MODIFIES: program
-    // EFFECTS: loads program from file
+    // MODIFIES: workoutProgram
+    // EFFECTS: loads workoutProgram from file
     private void loadProgram() throws IOException {
-        program = jsonReader.read();
-        System.out.println("Loaded " + program.getName() + " from " + JSON_STORE);
+        workoutProgram = jsonReader.read();
+        System.out.println("Loaded " + workoutProgram.getName() + " from " + JSON_STORE);
     }
 }

@@ -2,7 +2,7 @@ package persistence;
 
 
 import model.Exercise;
-import model.Program;
+import model.WorkoutProgram;
 import model.Session;
 import org.junit.jupiter.api.Test;
 
@@ -18,7 +18,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterInvalidFile() {
         try {
-            Program p = new Program("My Program");
+            WorkoutProgram p = new WorkoutProgram("My WorkoutProgram");
             JsonWriter writer = new JsonWriter("./data/tests/my\0illegal:fileName.json");
             writer.open();
             fail("IOException was expected");
@@ -30,7 +30,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterEmptyProgram() {
         try {
-            Program p = new Program("My Program");
+            WorkoutProgram p = new WorkoutProgram("My WorkoutProgram");
             JsonWriter writer = new JsonWriter("./data/tests/testWriterEmptyProgram.json");
             writer.open();
             writer.write(p);
@@ -38,7 +38,7 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/tests/testWriterEmptyProgram.json");
             p = reader.read();
-            assertEquals("My Program", p.getName());
+            assertEquals("My WorkoutProgram", p.getName());
             assertEquals(0, p.numberOfSessions());
         } catch (IOException e) {
             fail("Exception should not have been thrown");
@@ -48,7 +48,7 @@ public class JsonWriterTest extends JsonTest {
     @Test
     void testWriterGeneralProgram() {
         try {
-            Program p = new Program("My Program");
+            WorkoutProgram p = new WorkoutProgram("My WorkoutProgram");
             Session a = new Session("A");
             Session b = new Session("B");
             p.addSession(a);
@@ -62,7 +62,7 @@ public class JsonWriterTest extends JsonTest {
 
             JsonReader reader = new JsonReader("./data/tests/testWriterGeneralProgram.json");
             p = reader.read();
-            assertEquals("My Program", p.getName());
+            assertEquals("My WorkoutProgram", p.getName());
             List<Session> sessions = p.getSessions();
             assertEquals(2, sessions.size());
             checkSession(a.getName(), a.getExercises(), sessions.get(0));

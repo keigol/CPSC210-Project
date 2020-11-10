@@ -1,8 +1,7 @@
 package persistence;
 
 import model.Exercise;
-import model.ExerciseContainer;
-import model.Program;
+import model.WorkoutProgram;
 import model.Session;
 import org.json.JSONArray;
 import org.json.JSONObject;
@@ -13,7 +12,7 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.util.stream.Stream;
 
-// A reader that reads Program from JSON data stored in file
+// A reader that reads WorkoutProgram from JSON data stored in file
 // referenced JSONSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git)
 public class JsonReader {
     private String source;
@@ -25,7 +24,7 @@ public class JsonReader {
 
     // EFFECTS: reads program from file and returns it;
     // throws IOException if an error occurs reading data from file
-    public Program read() throws IOException {
+    public WorkoutProgram read() throws IOException {
         String jsonData = readFile(source);
         JSONObject jsonObject = new JSONObject(jsonData);
         return parseProgram(jsonObject);
@@ -43,16 +42,16 @@ public class JsonReader {
     }
 
     // EFFECTS: parses program from JSON object and returns it
-    private Program parseProgram(JSONObject jsonObject) {
+    private WorkoutProgram parseProgram(JSONObject jsonObject) {
         String name = jsonObject.getString("name");
-        Program p = new Program(name);
+        WorkoutProgram p = new WorkoutProgram(name);
         addSessions(p, jsonObject);
         return p;
     }
 
     // MODIFIES: p
     // EFFECTS: parses sessions from JSON object and adds them to the program
-    private void addSessions(Program p, JSONObject jsonObject) {
+    private void addSessions(WorkoutProgram p, JSONObject jsonObject) {
         JSONArray jsonArray = jsonObject.getJSONArray("sessions");
         for (Object json : jsonArray) {
             JSONObject nextSession = (JSONObject) json;
@@ -62,7 +61,7 @@ public class JsonReader {
 
     // MODIFIES: p
     // EFFECTS: parses session from JSON Object and adds it to program
-    private void addSession(Program p, JSONObject jsonObject) {
+    private void addSession(WorkoutProgram p, JSONObject jsonObject) {
         String name = jsonObject.getString("name");
         Session s = new Session(name);
         addExerciseContainers(s, jsonObject);

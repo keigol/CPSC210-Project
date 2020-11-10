@@ -2,7 +2,7 @@ package persistence;
 
 import model.Exercise;
 import model.ExerciseContainer;
-import model.Program;
+import model.WorkoutProgram;
 import model.Session;
 import org.junit.jupiter.api.Test;
 
@@ -28,10 +28,10 @@ public class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderEmptyWorkRoom() {
+    void testReaderEmptyProgram() {
         JsonReader reader = new JsonReader("./data/tests/testReaderEmptyProgram.json");
         try {
-            Program p = reader.read();
+            WorkoutProgram p = reader.read();
             assertEquals("My Program", p.getName());
             assertEquals(0, p.numberOfSessions());
         } catch (IOException e) {
@@ -40,10 +40,10 @@ public class JsonReaderTest extends JsonTest {
     }
 
     @Test
-    void testReaderGeneralWorkRoom() {
+    void testReaderGeneralProgram() {
         JsonReader reader = new JsonReader("./data/tests/testReaderGeneralProgram.json");
         try {
-            Program p = reader.read();
+            WorkoutProgram p = reader.read();
             assertEquals("My Program", p.getName());
             List<Session> sessions = p.getSessions();
             assertEquals(2, sessions.size());

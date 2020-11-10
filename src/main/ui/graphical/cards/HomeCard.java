@@ -1,23 +1,20 @@
 package ui.graphical.cards;
 
-import model.Program;
+import model.WorkoutProgram;
+import ui.graphical.WorkoutTrackerGUI;
 
 import javax.swing.*;
 import java.awt.*;
 
 // Displays the home page
-public class HomeCard extends JPanel {
-    private final String title = "Home";
-    private Program program;
+public class HomeCard extends JPanel implements Card {
+    public static final String TITLE = "Home";
+    private WorkoutTrackerGUI application;
 
     // MODIFIES: this
     // EFFECTS: instantiates the home card
-    public HomeCard(Program program) {
-        this.program = program;
+    public HomeCard(WorkoutTrackerGUI application) {
+        this.application = application;
         setBackground(Color.decode("#F1F7F7"));
-    }
-
-    public String getTitle() {
-        return title;
     }
 }

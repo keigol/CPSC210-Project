@@ -11,13 +11,13 @@ import java.util.Optional;
 
 // Represents a weight-training/fitness program
 // referenced JsonSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git)
-public class Program implements Writable {
+public class WorkoutProgram implements Writable {
     private String name;
     private List<Session> sessions;
 
     // MODIFIES: this
     // EFFECTS: create a program object with empty list of sessions
-    public Program(String name) {
+    public WorkoutProgram(String name) {
         this.name = name;
         this.sessions = new ArrayList<>();
     }

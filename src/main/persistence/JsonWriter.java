@@ -1,13 +1,13 @@
 package persistence;
 
-import model.Program;
+import model.WorkoutProgram;
 import org.json.JSONObject;
 
 import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.PrintWriter;
 
-// A writer that writes JSON representation of Program to file
+// A writer that writes JSON representation of WorkoutProgram to file
 // referenced JSONSerializationDemo (https://github.students.cs.ubc.ca/CPSC210/JsonSerializationDemo.git)
 public class JsonWriter {
     private static final int TAB = 4;
@@ -27,8 +27,8 @@ public class JsonWriter {
     }
 
     // MODIFIES: this
-    // EFFECTS: writes JSON representation of Program to file
-    public void write(Program p) {
+    // EFFECTS: writes JSON representation of WorkoutProgram to file
+    public void write(WorkoutProgram p) {
         JSONObject json = p.toJson();
         saveToFile(json.toString(TAB));
     }
