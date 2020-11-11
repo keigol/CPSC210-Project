@@ -9,6 +9,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.util.List;
 
+//test
 // Displays the workoutProgram overview
 public class MyProgramCard extends JPanel implements Card {
     public static final String TITLE = "My Workout Program";
