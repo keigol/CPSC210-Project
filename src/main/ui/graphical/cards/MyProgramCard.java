@@ -1,13 +1,11 @@
 package ui.graphical.cards;
 
-import model.ExerciseContainer;
 import model.Session;
 import ui.graphical.Styling;
 import ui.graphical.WorkoutTrackerGUI;
 import ui.graphical.cards.components.SessionPanel;
 
 import javax.swing.*;
-import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.util.List;
 
@@ -15,6 +13,8 @@ import java.util.List;
 public class MyProgramCard extends JPanel implements Card {
     public static final String TITLE = "My Workout Program";
     private WorkoutTrackerGUI application;
+    //private List<SessionPanel> sessionPanels = new ArrayList<>();
+    // above is not needed if update sessions
 
     // MODIFIES: this
     // EFFECTS: instantiates the my workoutProgram card
@@ -22,8 +22,7 @@ public class MyProgramCard extends JPanel implements Card {
         this.application = application;
         setBackground(Styling.BACKGROUND_COLOR);
 
-        GridBagLayout gbl = new GridBagLayout();
-        setLayout(gbl);
+        setLayout(new GridBagLayout());
 
         initializeTitle();
         initializeSessions();
@@ -33,10 +32,10 @@ public class MyProgramCard extends JPanel implements Card {
     private void initializeTitle() {
         JLabel title = new JLabel(application.getWorkoutProgram().getName());
         title.setFont(Styling.TITLE_FONT);
-        add(title, createTitleRestraints());
+        add(title, createTitleConstraints());
     }
 
-    private GridBagConstraints createTitleRestraints() {
+    private GridBagConstraints createTitleConstraints() {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(30, 30, 40, 10);
         c.gridx = 0;
@@ -56,14 +55,14 @@ public class MyProgramCard extends JPanel implements Card {
     }
 
     private void initializeSession(Session session, int i) {
-        JPanel sessionPanel = new SessionPanel(session);
-        add(sessionPanel, createSessionPanelRestraints(i));
+        SessionPanel sessionPanel = new SessionPanel(session);
+        //sessionPanels.add(sessionPanel);
+        add(sessionPanel, createSessionPanelConstraints(i));
     }
 
-    private GridBagConstraints createSessionPanelRestraints(int i) {
+    private GridBagConstraints createSessionPanelConstraints(int i) {
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(7, 30, 7, 10);
-        c.ipady = 15;
+        c.insets = new Insets(7, 40, 7, 40);
         c.gridx = 0;
         c.gridy = i + 1;
         c.weightx = 0.5;

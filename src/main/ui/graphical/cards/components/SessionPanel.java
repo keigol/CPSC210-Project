@@ -13,7 +13,10 @@ public class SessionPanel extends JPanel {
     public SessionPanel(Session session) {
         setLayout(new GridLayout(0,1));
         setBackground(Styling.ACCENT_COLOR);
-        setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.RAISED));
+
+        setBorder(BorderFactory.createCompoundBorder(BorderFactory.createSoftBevelBorder(BevelBorder.RAISED),
+                BorderFactory.createEmptyBorder(10, 20, 10, 20)));
+
 
         JLabel sessionName = new JLabel(session.getName());
         sessionName.setFont(Styling.SUBTITLE_FONT);
