@@ -18,10 +18,11 @@ public class SideMenu extends JPanel implements ActionListener {
     public SideMenu(WorkoutTrackerGUI application) {
         this.application = application;
 
-        setBackground(Color.WHITE);
-        setLayout(new BoxLayout(this, BoxLayout.Y_AXIS));
-
+        setBackground(Styling.ACCENT_COLOR);
+        setLayout(new GridLayout(0, 1, 0, 20));
+        setBorder(BorderFactory.createEmptyBorder(20, 10, 20, 10));
         initializeButtons();
+        addWhiteSpace(7);
     }
 
     // MODIFIES: workoutTrackerGUI
@@ -47,13 +48,19 @@ public class SideMenu extends JPanel implements ActionListener {
         b1.addActionListener(this);
         b2.addActionListener(this);
 
-
-        // TODO: styling make superclass
+        // removes styling
 //        b1.setBorderPainted(false);
 //        b1.setFocusPainted(false);
 //        b1.setContentAreaFilled(false);
-
         add(b1);
         add(b2);
+    }
+
+    private void addWhiteSpace(int n) {
+        for (int i = 0; i < n; i++) {
+            JPanel p = new JPanel();
+            p.setBackground(Styling.ACCENT_COLOR);
+            add(p);
+        }
     }
 }

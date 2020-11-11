@@ -19,14 +19,14 @@ public class MyProgramCard extends JPanel implements Card {
     // EFFECTS: instantiates the my workoutProgram card
     public MyProgramCard(WorkoutTrackerGUI application) {
         this.application = application;
-        setBackground(Color.decode("#F1F7F7"));
+        setBackground(Styling.BACKGROUND_COLOR);
 
         GridBagLayout gbl = new GridBagLayout();
         setLayout(gbl);
 
         initializeTitle();
         initializeSessions();
-        emptyPanel();
+        addWhiteSpace();
 
     }
 
@@ -58,7 +58,7 @@ public class MyProgramCard extends JPanel implements Card {
     private void initializeSession(Session session, int i) {
         JPanel sessionPanel = new JPanel();
         sessionPanel.setLayout(new GridLayout(0,1));
-        sessionPanel.setBackground(Color.WHITE);
+        sessionPanel.setBackground(Styling.ACCENT_COLOR);
         sessionPanel.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.RAISED));
 
         JLabel sessionName = new JLabel(session.getName());
@@ -83,10 +83,11 @@ public class MyProgramCard extends JPanel implements Card {
         c.weightx = 0.5;
         c.weighty = 0;
         c.anchor = GridBagConstraints.WEST;
+        c.fill = GridBagConstraints.HORIZONTAL;
         return c;
     }
 
-    private void emptyPanel() {
+    private void addWhiteSpace() {
         GridBagConstraints c = new GridBagConstraints();
         c.gridx = 0;
         c.weightx = 1.0;
@@ -94,7 +95,7 @@ public class MyProgramCard extends JPanel implements Card {
         c.anchor = GridBagConstraints.NORTH;
         c.fill = GridBagConstraints.VERTICAL;
         JPanel p = new JPanel();
-        p.setBackground(Color.decode("#F1F7F7"));
+        p.setBackground(Styling.BACKGROUND_COLOR);
         add(p, c);
     }
 }
