@@ -1,0 +1,89 @@
+{
+  "sessions": [
+    {
+      "exercises": [
+        {
+          "reps": 10,
+          "sets": 2,
+          "exercise": {
+            "name": "pushup",
+            "description": ""
+          }
+        },
+        {
+          "reps": 20,
+          "sets": 2,
+          "exercise": {
+            "name": "bench press",
+            "description": ""
+          }
+        }
+      ],
+      "name": "A"
+    },
+    {
+      "exercises": [
+        {
+          "reps": 10,
+          "sets": 2,
+          "exercise": {
+            "name": "squat",
+            "description": ""
+          }
+        },
+        {
+          "reps": 20,
+          "sets": 2,
+          "exercise": {
+            "name": "lunge",
+            "description": "uses one leg"
+          }
+        }
+      ],
+      "name": "B"
+    },
+    {
+      "exercises": [
+        {
+          "reps": 10,
+          "sets": 2,
+          "exercise": {
+            "name": "squat",
+            "description": ""
+          }
+        },
+        {
+          "reps": 20,
+          "sets": 2,
+          "exercise": {
+            "name": "lunge",
+            "description": "uses one leg"
+          }
+        }
+      ],
+      "name": "C"
+    },
+    {
+      "exercises": [
+        {
+          "reps": 10,
+          "sets": 2,
+          "exercise": {
+            "name": "squat",
+            "description": ""
+          }
+        },
+        {
+          "reps": 20,
+          "sets": 2,
+          "exercise": {
+            "name": "lunge",
+            "description": "uses one leg"
+          }
+        }
+      ],
+      "name": "D"
+    }
+  ],
+  "name": "My Workout Program"
+}

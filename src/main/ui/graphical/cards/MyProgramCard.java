@@ -6,10 +6,10 @@ import ui.graphical.Styling;
 import ui.graphical.WorkoutTrackerGUI;
 
 import javax.swing.*;
+import javax.swing.border.BevelBorder;
 import java.awt.*;
 import java.util.List;
 
-//test
 // Displays the workoutProgram overview
 public class MyProgramCard extends JPanel implements Card {
     public static final String TITLE = "My Workout Program";
@@ -21,17 +21,24 @@ public class MyProgramCard extends JPanel implements Card {
         this.application = application;
         setBackground(Color.decode("#F1F7F7"));
 
-        setLayout(new GridBagLayout());
+        GridBagLayout gbl = new GridBagLayout();
+        setLayout(gbl);
 
         initializeTitle();
         initializeSessions();
+        emptyPanel();
+
     }
 
     private void initializeTitle() {
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(100, 20, 100, 20);
+        c.insets = new Insets(30, 30, 40, 10);
         c.gridx = 0;
         c.gridy = 0;
+        c.fill = GridBagConstraints.HORIZONTAL;
+        c.anchor = GridBagConstraints.NORTHWEST;
+        c.weightx = 0.5;
+        c.weighty = 0;
 
         JLabel title = new JLabel(application.getWorkoutProgram().getName());
         title.setFont(Styling.TITLE_FONT);
@@ -49,23 +56,38 @@ public class MyProgramCard extends JPanel implements Card {
         JPanel sessionPanel = new JPanel();
         sessionPanel.setLayout(new GridLayout(0,1));
         sessionPanel.setBackground(Color.WHITE);
+        sessionPanel.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.RAISED));
 
-        JLabel subtitle = new JLabel(session.getName());
-        subtitle.setFont(Styling.SUBTITLE_FONT);
-        sessionPanel.add(subtitle);
+        JLabel sessionName = new JLabel(session.getName());
+        sessionName.setFont(Styling.SUBTITLE_FONT);
+        sessionPanel.add(sessionName);
 
-        for (ExerciseContainer exercise : session.getExercises()) {
-            JLabel exerciseLabel = new JLabel(exercise.toString());
-            exerciseLabel.setFont(Styling.FONT);
-            sessionPanel.add(exerciseLabel);
+        for (ExerciseContainer ex : session.getExercises()) {
+            JLabel exercise = new JLabel(ex.toString());
+            exercise.setFont(Styling.FONT);
+            sessionPanel.add(exercise);
         }
 
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(20, 10, 20, 10);
+        c.insets = new Insets(7, 30, 7, 10);
+        c.ipady = 15;
         c.gridx = 0;
         c.gridy = i + 1;
-        c.gridwidth = 3;
-        c.ipady = 100;
+        c.weightx = 0.5;
+        c.weighty = 0;
+        c.anchor = GridBagConstraints.WEST;
         add(sessionPanel, c);
+    }
+
+    private void emptyPanel() {
+        GridBagConstraints c = new GridBagConstraints();
+        c.gridx = 0;
+        c.weightx = 1.0;
+        c.weighty = 1.0;
+        c.anchor = GridBagConstraints.NORTH;
+        c.fill = GridBagConstraints.VERTICAL;
+        JPanel p = new JPanel();
+        p.setBackground(Color.decode("#F1F7F7"));
+        add(p, c);
     }
 }

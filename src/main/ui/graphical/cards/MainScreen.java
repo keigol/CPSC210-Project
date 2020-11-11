@@ -18,6 +18,7 @@ public class MainScreen extends JPanel {
         cards = new HashMap<>();
         setLayout(new CardLayout());
         initializeCards();
+
     }
 
     private void initializeCards() {
