@@ -4,6 +4,7 @@ import model.ExerciseContainer;
 import model.Session;
 import ui.graphical.Styling;
 import ui.graphical.WorkoutTrackerGUI;
+import ui.graphical.cards.components.SessionPanel;
 
 import javax.swing.*;
 import javax.swing.border.BevelBorder;
@@ -27,7 +28,6 @@ public class MyProgramCard extends JPanel implements Card {
         initializeTitle();
         initializeSessions();
         addWhiteSpace();
-
     }
 
     private void initializeTitle() {
@@ -56,21 +56,7 @@ public class MyProgramCard extends JPanel implements Card {
     }
 
     private void initializeSession(Session session, int i) {
-        JPanel sessionPanel = new JPanel();
-        sessionPanel.setLayout(new GridLayout(0,1));
-        sessionPanel.setBackground(Styling.ACCENT_COLOR);
-        sessionPanel.setBorder(BorderFactory.createSoftBevelBorder(BevelBorder.RAISED));
-
-        JLabel sessionName = new JLabel(session.getName());
-        sessionName.setFont(Styling.SUBTITLE_FONT);
-        sessionPanel.add(sessionName);
-
-        for (ExerciseContainer ex : session.getExercises()) {
-            JLabel exercise = new JLabel(ex.toString());
-            exercise.setFont(Styling.FONT);
-            sessionPanel.add(exercise);
-        }
-
+        JPanel sessionPanel = new SessionPanel(session);
         add(sessionPanel, createSessionPanelRestraints(i));
     }
 
