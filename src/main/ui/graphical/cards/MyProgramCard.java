@@ -31,6 +31,12 @@ public class MyProgramCard extends JPanel implements Card {
     }
 
     private void initializeTitle() {
+        JLabel title = new JLabel(application.getWorkoutProgram().getName());
+        title.setFont(Styling.TITLE_FONT);
+        add(title, createTitleRestraints());
+    }
+
+    private GridBagConstraints createTitleRestraints() {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(30, 30, 40, 10);
         c.gridx = 0;
@@ -39,10 +45,7 @@ public class MyProgramCard extends JPanel implements Card {
         c.anchor = GridBagConstraints.NORTHWEST;
         c.weightx = 0.5;
         c.weighty = 0;
-
-        JLabel title = new JLabel(application.getWorkoutProgram().getName());
-        title.setFont(Styling.TITLE_FONT);
-        add(title, c);
+        return c;
     }
 
     private void initializeSessions() {
@@ -68,6 +71,10 @@ public class MyProgramCard extends JPanel implements Card {
             sessionPanel.add(exercise);
         }
 
+        add(sessionPanel, createSessionPanelRestraints(i));
+    }
+
+    private GridBagConstraints createSessionPanelRestraints(int i) {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(7, 30, 7, 10);
         c.ipady = 15;
@@ -76,7 +83,7 @@ public class MyProgramCard extends JPanel implements Card {
         c.weightx = 0.5;
         c.weighty = 0;
         c.anchor = GridBagConstraints.WEST;
-        add(sessionPanel, c);
+        return c;
     }
 
     private void emptyPanel() {
