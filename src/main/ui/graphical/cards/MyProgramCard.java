@@ -7,10 +7,12 @@ import ui.graphical.cards.components.SessionPanel;
 
 import javax.swing.*;
 import java.awt.*;
+import java.awt.event.ActionEvent;
+import java.awt.event.ActionListener;
 import java.util.List;
 
 // Displays the workoutProgram overview
-public class MyProgramCard extends JPanel implements Card {
+public class MyProgramCard extends JPanel implements Card, ActionListener {
     public static final String TITLE = "My Workout Program";
     private WorkoutTrackerGUI application;
     //private List<SessionPanel> sessionPanels = new ArrayList<>();
@@ -55,7 +57,7 @@ public class MyProgramCard extends JPanel implements Card {
     }
 
     private void initializeSession(Session session, int i) {
-        SessionPanel sessionPanel = new SessionPanel(session);
+        SessionPanel sessionPanel = new SessionPanel(this, session);
         //sessionPanels.add(sessionPanel);
         add(sessionPanel, createSessionPanelConstraints(i));
     }
@@ -82,5 +84,34 @@ public class MyProgramCard extends JPanel implements Card {
         JPanel p = new JPanel();
         p.setBackground(Styling.BACKGROUND_COLOR);
         add(p, c);
+    }
+
+    @Override
+    public void actionPerformed(ActionEvent e) {
+        JButton button = (JButton) e.getSource();
+        SessionPanel sessionPanel;
+        switch (e.getActionCommand()) {
+            case "Add Exercise":
+                sessionPanel = (SessionPanel) button.getParent();
+                addExercise(sessionPanel);
+                break;
+            case "Delete Session":
+                sessionPanel = (SessionPanel) button.getParent();
+                deleteSession(sessionPanel);
+                break;
+            default:
+                break;
+        }
+    }
+
+    private void deleteSession(SessionPanel sessionPanel) {
+        application.getWorkoutProgram().removeSession(sessionPanel.getSession());
+        remove(sessionPanel);
+        revalidate();
+        repaint();
+    }
+
+    private void addExercise(SessionPanel sessionPanel) {
+
     }
 }
