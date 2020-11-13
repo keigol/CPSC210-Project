@@ -44,9 +44,6 @@ public class SessionPanel extends JPanel {
         addExerciseButton.addActionListener(myProgramCard);
         deleteSessionButton.addActionListener(myProgramCard);
 
-        addExerciseButton.putClientProperty("session", session);
-        deleteSessionButton.putClientProperty("session", session);
-
         add(addExerciseButton);
         add(deleteSessionButton);
     }

@@ -15,8 +15,6 @@ import java.util.List;
 public class MyProgramCard extends JPanel implements Card, ActionListener {
     public static final String TITLE = "My Workout Program";
     private WorkoutTrackerGUI application;
-    //private List<SessionPanel> sessionPanels = new ArrayList<>();
-    // above is not needed if update sessions
 
     // MODIFIES: this
     // EFFECTS: instantiates the my workoutProgram card
@@ -28,7 +26,7 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
 
         initializeTitle();
         initializeSessions();
-        addWhiteSpace();
+        initializeAddSessionButton();
     }
 
     private void initializeTitle() {
@@ -39,7 +37,7 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
 
     private GridBagConstraints createTitleConstraints() {
         GridBagConstraints c = new GridBagConstraints();
-        c.insets = new Insets(30, 30, 40, 10);
+        c.insets = new Insets(30, 30, 23, 10);
         c.gridx = 0;
         c.gridy = 0;
         c.fill = GridBagConstraints.HORIZONTAL;
@@ -58,7 +56,6 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
 
     private void initializeSession(Session session, int i) {
         SessionPanel sessionPanel = new SessionPanel(this, session);
-        //sessionPanels.add(sessionPanel);
         add(sessionPanel, createSessionPanelConstraints(i));
     }
 
@@ -74,16 +71,18 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         return c;
     }
 
-    private void addWhiteSpace() {
+    private void initializeAddSessionButton() {
         GridBagConstraints c = new GridBagConstraints();
+        c.insets = new Insets(7, 40, 7, 40);
         c.gridx = 0;
         c.weightx = 1.0;
         c.weighty = 1.0;
-        c.anchor = GridBagConstraints.NORTH;
-        c.fill = GridBagConstraints.VERTICAL;
-        JPanel p = new JPanel();
-        p.setBackground(Styling.BACKGROUND_COLOR);
-        add(p, c);
+        c.anchor = GridBagConstraints.SOUTHEAST;
+
+        JButton addSessionButton = new JButton("Add Session");
+        addSessionButton.addActionListener(this);
+
+        add(addSessionButton, c);
     }
 
     @Override
@@ -93,25 +92,32 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         switch (e.getActionCommand()) {
             case "Add Exercise":
                 sessionPanel = (SessionPanel) button.getParent();
-                addExercise(sessionPanel);
+                addExerciseAction(sessionPanel);
                 break;
             case "Delete Session":
                 sessionPanel = (SessionPanel) button.getParent();
-                deleteSession(sessionPanel);
+                deleteSessionAction(sessionPanel);
+                break;
+            case "Add Session":
+                addSessionAction();
                 break;
             default:
                 break;
         }
     }
 
-    private void deleteSession(SessionPanel sessionPanel) {
+    private void deleteSessionAction(SessionPanel sessionPanel) {
         application.getWorkoutProgram().removeSession(sessionPanel.getSession());
         remove(sessionPanel);
         revalidate();
         repaint();
     }
 
-    private void addExercise(SessionPanel sessionPanel) {
+    private void addExerciseAction(SessionPanel sessionPanel) {
+
+    }
+
+    private void addSessionAction() {
 
     }
 }
