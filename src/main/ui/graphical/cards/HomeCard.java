@@ -1,6 +1,5 @@
 package ui.graphical.cards;
 
-import model.WorkoutProgram;
 import ui.graphical.Styling;
 import ui.graphical.WorkoutTrackerGUI;
 
@@ -17,5 +16,9 @@ public class HomeCard extends JPanel implements Card {
     public HomeCard(WorkoutTrackerGUI application) {
         this.application = application;
         setBackground(Styling.BACKGROUND_COLOR);
+        setLayout(new BorderLayout());
+        JLabel title = new JLabel("Welcome", SwingConstants.CENTER);
+        title.setFont(Styling.TITLE_FONT);
+        add(title, BorderLayout.CENTER);
     }
 }

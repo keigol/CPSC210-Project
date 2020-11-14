@@ -1,5 +1,6 @@
 package ui.graphical;
 
+import jdk.nashorn.internal.scripts.JO;
 import model.WorkoutProgram;
 import persistence.JsonReader;
 import persistence.JsonWriter;
@@ -9,6 +10,7 @@ import javax.swing.*;
 import java.awt.*;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.io.FileNotFoundException;
 import java.io.IOException;
 
 // The main gui application
@@ -28,11 +30,8 @@ public class WorkoutTrackerGUI extends JFrame {
 
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
-        try {
-            workoutProgram = jsonReader.read();
-        } catch (IOException e) {
-            workoutProgram = new WorkoutProgram("My Workout Program");
-        }
+
+        loadDataPrompt();
 
         initializeScreenComponents();
         initializePersistenceDialogs();
@@ -61,7 +60,6 @@ public class WorkoutTrackerGUI extends JFrame {
             @Override
             public void windowClosing(WindowEvent e) {
                 saveDataPrompt();
-                dispose();
             }
         });
     }
@@ -78,14 +76,41 @@ public class WorkoutTrackerGUI extends JFrame {
     // if yes, saves data to file
     // if no, does nothing
     private void saveDataPrompt() {
-        // TODO
+        int n = JOptionPane.showConfirmDialog(this,
+                "Would you like to save your data?",
+                "Save data?",
+                JOptionPane.YES_NO_CANCEL_OPTION);
+        if (n == 0) {
+            try {
+                jsonWriter.open();
+                jsonWriter.write(workoutProgram);
+                jsonWriter.close();
+                System.out.println("Saved " + workoutProgram.getName() + " to " + JSON_STORE);
+                dispose();
+            } catch (FileNotFoundException e) {
+                System.out.println("Unable to write to file: " + JSON_STORE);
+            }
+        } else if (n == 1) {
+            dispose();
+        }
     }
 
     // MODIFIES: this
     // EFFECTS: Opens a dialog box to prompt user to either load data or start a blank application
     private void loadDataPrompt() {
-        // TODO
-        JOptionPane loadDialog = new JOptionPane();
-
+        int n = JOptionPane.showConfirmDialog(this,
+                "Would you like to load previously saved data?",
+                "Load data?",
+                JOptionPane.YES_NO_OPTION);
+        if (n == 0) {
+            try {
+                workoutProgram = jsonReader.read();
+            } catch (IOException e) {
+                System.out.println("Data could not be loaded");
+                workoutProgram = new WorkoutProgram("My Workout Program");
+            }
+        } else {
+            workoutProgram = new WorkoutProgram("My Workout Program");
+        }
     }
 }
