@@ -1,5 +1,6 @@
 package ui.graphical.cards;
 
+import model.Exercise;
 import model.Session;
 import ui.graphical.Styling;
 import ui.graphical.WorkoutTrackerGUI;
@@ -10,6 +11,7 @@ import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
 import java.util.List;
+import java.util.Optional;
 
 // Displays the workoutProgram overview
 public class MyProgramCard extends JPanel implements Card, ActionListener {
@@ -114,10 +116,106 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
     }
 
     private void addExerciseAction(SessionPanel sessionPanel) {
+        Optional<String[]> response = addExerciseDialog();
+        if (response.isPresent()) {
+            if (!isValidExercise(response.get())) {
+                JOptionPane.showMessageDialog(this,
+                        "Name must not be empty. Sets and reps must be integers.",
+                        "Input error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
+            String name = response.get()[0];
+            int sets = Integer.parseInt(response.get()[1]);
+            int reps = Integer.parseInt(response.get()[2]);
+            String description = response.get()[3];
+
+            sessionPanel.getSession().addExercise(new Exercise(name, description), sets, reps);
+
+            refreshAllComponents();
+            revalidate();
+            repaint();
+        }
+    }
+
+    private Optional<String[]> addExerciseDialog() {
+        JTextField name = new JTextField();
+        JTextField sets = new JTextField();
+        JTextField reps = new JTextField();
+        JTextField description = new JTextField();
+
+        JPanel labelAndText = new JPanel();
+        labelAndText.setLayout(new GridLayout(0, 2));
+        labelAndText.add(new JLabel("Name: "));
+        labelAndText.add(name);
+        labelAndText.add(new JLabel("Sets: "));
+        labelAndText.add(sets);
+        labelAndText.add(new JLabel("Reps: "));
+        labelAndText.add(reps);
+        labelAndText.add(new JLabel("Description: "));
+        labelAndText.add(description);
+
+        int result = JOptionPane.showConfirmDialog(this, labelAndText,
+                "Add Exercise", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            return Optional.of(new String[]{name.getText(), sets.getText(), reps.getText(), description.getText()});
+        }
+
+        return Optional.empty();
+    }
+
+    private boolean isValidExercise(String[] response) {
+        try {
+            Integer.parseInt(response[1]);
+            Integer.parseInt(response[2]);
+        } catch (NumberFormatException e) {
+            return false;
+        }
+        return !response[0].isEmpty();
     }
 
     private void addSessionAction() {
+        Optional<String> response = addSessionDialog();
+        if (response.isPresent()) {
+            String name = response.get();
+            if (name.isEmpty()) {
+                JOptionPane.showMessageDialog(this,
+                        "Name must not be empty.",
+                        "Input error",
+                        JOptionPane.ERROR_MESSAGE);
+                return;
+            }
 
+            application.getWorkoutProgram().addSession(new Session(name));
+
+            refreshAllComponents();
+            revalidate();
+            repaint();
+        }
+    }
+
+    private Optional<String> addSessionDialog() {
+        JTextField name = new JTextField();
+
+        JPanel labelAndText = new JPanel();
+        labelAndText.setLayout(new GridLayout(0, 2));
+        labelAndText.add(new JLabel("Name: "));
+        labelAndText.add(name);
+
+        int result = JOptionPane.showConfirmDialog(this, labelAndText,
+                "Add Exercise", JOptionPane.OK_CANCEL_OPTION);
+        if (result == JOptionPane.OK_OPTION) {
+            return Optional.of(name.getText());
+        }
+
+        return Optional.empty();
+    }
+
+    public void refreshAllComponents() {
+        removeAll();
+        initializeTitle();
+        initializeSessions();
+        initializeAddSessionButton();
     }
 }

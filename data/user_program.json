@@ -83,27 +83,6 @@
         }
       ],
       "name": "D"
-    },
-    {
-      "exercises": [
-        {
-          "reps": 10,
-          "sets": 2,
-          "exercise": {
-            "name": "squat",
-            "description": ""
-          }
-        },
-        {
-          "reps": 20,
-          "sets": 2,
-          "exercise": {
-            "name": "lunge",
-            "description": "uses one leg"
-          }
-        }
-      ],
-      "name": "D"
     }
   ],
   "name": "My Workout Program"

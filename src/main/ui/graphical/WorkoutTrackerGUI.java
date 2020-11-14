@@ -85,5 +85,7 @@ public class WorkoutTrackerGUI extends JFrame {
     // EFFECTS: Opens a dialog box to prompt user to either load data or start a blank application
     private void loadDataPrompt() {
         // TODO
+        JOptionPane loadDialog = new JOptionPane();
+
     }
 }
