@@ -31,10 +31,8 @@ public class WorkoutTrackerGUI extends JFrame {
         jsonWriter = new JsonWriter(JSON_STORE);
         jsonReader = new JsonReader(JSON_STORE);
 
-        loadDataPrompt();
-
-        initializeScreenComponents();
         initializePersistenceDialogs();
+        initializeScreenComponents();
 
         setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
         setExtendedState(JFrame.MAXIMIZED_BOTH);
@@ -56,10 +54,14 @@ public class WorkoutTrackerGUI extends JFrame {
     }
 
     private void initializePersistenceDialogs() {
+        //loadDataPrompt();
+        workoutProgram = new WorkoutProgram("");
+
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                saveDataPrompt();
+                //saveDataPrompt();
+                dispose();
             }
         });
     }
