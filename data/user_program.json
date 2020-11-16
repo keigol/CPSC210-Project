@@ -1,24 +1,63 @@
 {
-    "sessions": [{
-        "exercises": [
-            {
-                "reps": 10,
-                "sets": 2,
-                "exercise": {
-                    "name": "pushup",
-                    "description": ""
+    "sessions": [
+        {
+            "exercises": [
+                {
+                    "reps": 5,
+                    "sets": 5,
+                    "exercise": {
+                        "name": "Squats",
+                        "description": "A squat is a strength exercise in which the trainee lowers their hips from a standing position and then stands back up"
+                    }
+                },
+                {
+                    "reps": 12,
+                    "sets": 3,
+                    "exercise": {
+                        "name": "Dumbbell Lunges",
+                        "description": ""
+                    }
+                },
+                {
+                    "reps": 12,
+                    "sets": 3,
+                    "exercise": {
+                        "name": "Leg Raises",
+                        "description": ""
+                    }
                 }
-            },
-            {
-                "reps": 20,
-                "sets": 2,
-                "exercise": {
-                    "name": "bench press",
-                    "description": ""
+            ],
+            "name": "Leg Day"
+        },
+        {
+            "exercises": [
+                {
+                    "reps": 5,
+                    "sets": 5,
+                    "exercise": {
+                        "name": "Bench Press",
+                        "description": ""
+                    }
+                },
+                {
+                    "reps": 8,
+                    "sets": 3,
+                    "exercise": {
+                        "name": "Tricep Extensions",
+                        "description": ""
+                    }
+                },
+                {
+                    "reps": 8,
+                    "sets": 3,
+                    "exercise": {
+                        "name": "Chest Fly",
+                        "description": ""
+                    }
                 }
-            }
-        ],
-        "name": "A"
-    }],
+            ],
+            "name": "Chest Day"
+        }
+    ],
     "name": "My Workout Program"
 }

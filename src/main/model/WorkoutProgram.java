@@ -83,6 +83,7 @@ public class WorkoutProgram implements Writable {
         return json;
     }
 
+    // EFFECTS: returns Json representation of sessions
     private JSONArray sessionsToJson() {
         JSONArray jsonArray = new JSONArray();
         for (Session s : sessions) {

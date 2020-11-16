@@ -2,6 +2,7 @@ package ui.graphical;
 
 import java.awt.*;
 
+// constants for styling gui
 public class Styling {
     public static final Font FONT = new Font("Arial", Font.PLAIN, 18);
     public static final Font TITLE_FONT = new Font("Arial", Font.BOLD, 40);

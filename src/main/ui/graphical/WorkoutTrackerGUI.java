@@ -54,14 +54,12 @@ public class WorkoutTrackerGUI extends JFrame {
     }
 
     private void initializePersistenceDialogs() {
-        //loadDataPrompt();
-        workoutProgram = new WorkoutProgram("");
+        loadDataPrompt();
 
         addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosing(WindowEvent e) {
-                //saveDataPrompt();
-                dispose();
+                saveDataPrompt();
             }
         });
     }

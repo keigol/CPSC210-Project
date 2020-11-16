@@ -51,7 +51,7 @@ public class ExerciseContainerTest {
 
     @Test
     public void testEqualsNotEquals() {
-        Exercise exercise2 = new Exercise("not jump", "cardio");
+        Exercise exercise2 = new Exercise("jump", "NOT EQUAL");
         ExerciseContainer container2 = new ExerciseContainer(exercise2, 1 ,1);
         ExerciseContainer container3 = new ExerciseContainer(exercise2, 100 ,1);
         ExerciseContainer container4 = new ExerciseContainer(exercise2, 1 ,100);
@@ -61,6 +61,7 @@ public class ExerciseContainerTest {
         assertFalse(container.equals(container4));
         assertFalse(exercise.equals(null));
         assertFalse(container.equals(null));
+        assertFalse(container.equals("a different object"));
         assertFalse(exercise.equals(new String()));
     }
 
