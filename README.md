@@ -20,5 +20,8 @@ So with this project, I can make something that will be of use to me and others 
 - As a user, I want to be able to start a workout session
 
 
+###Phase 4: Task 2
+A HashMap was used in the class MainScreen. This map has a card as its value, and the cards title as the key.
+
 
 
