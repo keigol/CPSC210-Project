@@ -21,6 +21,8 @@ public class MainScreen extends JPanel {
 
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates and adds cards to card map
     private void initializeCards() {
         HomeCard homeCard = new HomeCard(application);
         MyProgramCard myProgramCard = new MyProgramCard(application);

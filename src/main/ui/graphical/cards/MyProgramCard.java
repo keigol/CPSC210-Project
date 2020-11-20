@@ -31,12 +31,15 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         initializeAddSessionButton();
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds title to this
     private void initializeTitle() {
         JLabel title = new JLabel(application.getWorkoutProgram().getName());
         title.setFont(Styling.TITLE_FONT);
         add(title, createTitleConstraints());
     }
 
+    // EFFECTS: returns constraints for title
     private GridBagConstraints createTitleConstraints() {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(30, 30, 23, 10);
@@ -49,18 +52,24 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         return c;
     }
 
+    // MODIFIES: this
+    // EFFECTS: for each session create session panel
     private void initializeSessions() {
         List<Session> sessions = application.getWorkoutProgram().getSessions();
         for (int i = 0; i < sessions.size(); i++) {
-            initializeSession(sessions.get(i), i);
+            initializeSession(sessions.get(i), createSessionPanelConstraints(i));
         }
     }
 
-    private void initializeSession(Session session, int i) {
+    // MODIFIES: this
+    // EFFECTS: creates and adds session panel with constraints c
+    private void initializeSession(Session session, GridBagConstraints c) {
         SessionPanel sessionPanel = new SessionPanel(this, session);
-        add(sessionPanel, createSessionPanelConstraints(i));
+        add(sessionPanel, c);
     }
 
+    // REQUIRES: i >= 0
+    // EFFECTS: creates restraints for session panel
     private GridBagConstraints createSessionPanelConstraints(int i) {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(7, 40, 7, 40);
@@ -73,6 +82,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         return c;
     }
 
+    // MODIFIES: this
+    // EFFECTS: creates button that allows user to add a session
     private void initializeAddSessionButton() {
         GridBagConstraints c = new GridBagConstraints();
         c.insets = new Insets(7, 40, 7, 40);
@@ -87,6 +98,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         add(addSessionButton, c);
     }
 
+    // MODIFIES: this
+    // EFFECTS: on button click, either add exercise, delete session, or add session
     @Override
     public void actionPerformed(ActionEvent e) {
         JButton button = (JButton) e.getSource();
@@ -108,6 +121,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes session model and refreshes dispaly
     private void deleteSessionAction(SessionPanel sessionPanel) {
         application.getWorkoutProgram().removeSession(sessionPanel.getSession());
         remove(sessionPanel);
@@ -115,6 +130,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         repaint();
     }
 
+    // MODIFIES: this, sessionPanel
+    // EFFECTS: adds given exercise to model and refresh display
     private void addExerciseAction(SessionPanel sessionPanel) {
         Optional<String[]> response = addExerciseDialog();
         if (response.isPresent()) {
@@ -139,6 +156,7 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         }
     }
 
+    // EFFECTS: creates dialog asking for exercise
     private Optional<String[]> addExerciseDialog() {
         JTextField name = new JTextField();
         JTextField sets = new JTextField();
@@ -165,6 +183,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         return Optional.empty();
     }
 
+    // REQUIRES: response length is 3
+    // EFFECTS: returns true if response is formatted correctly
     private boolean isValidExercise(String[] response) {
         try {
             Integer.parseInt(response[1]);
@@ -175,6 +195,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         return !response[0].isEmpty();
     }
 
+    // MODIFIES: this
+    // EFFECTS: if response given, add session to this
     private void addSessionAction() {
         Optional<String> response = addSessionDialog();
         if (response.isPresent()) {
@@ -195,6 +217,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         }
     }
 
+
+    // EFFECTS: creates dialog asking for session
     private Optional<String> addSessionDialog() {
         JTextField name = new JTextField();
 
@@ -212,6 +236,8 @@ public class MyProgramCard extends JPanel implements Card, ActionListener {
         return Optional.empty();
     }
 
+    // MODIFIES: this
+    // EFFECTS: removes all components and creates them again
     public void refreshAllComponents() {
         removeAll();
         initializeTitle();

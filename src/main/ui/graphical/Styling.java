@@ -2,7 +2,7 @@ package ui.graphical;
 
 import java.awt.*;
 
-// constants for styling gui
+// Constants for styling gui
 public class Styling {
     public static final Font FONT = new Font("Arial", Font.PLAIN, 18);
     public static final Font TITLE_FONT = new Font("Arial", Font.BOLD, 40);
@@ -10,6 +10,4 @@ public class Styling {
 
     public static final Color ACCENT_COLOR = Color.decode("#dff7f7");
     public static final Color BACKGROUND_COLOR = Color.WHITE;
-
-
 }

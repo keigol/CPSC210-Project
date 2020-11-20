@@ -42,20 +42,20 @@ public class SideMenu extends JPanel implements ActionListener {
         }
     }
 
+    // MODIFIES: this
+    // EFFECTS: create and add buttons to this
     private void initializeButtons() {
         b1 = new JButton("Home");
         b2 = new JButton("My Workout Program");
         b1.addActionListener(this);
         b2.addActionListener(this);
 
-        // removes styling
-//        b1.setBorderPainted(false);
-//        b1.setFocusPainted(false);
-//        b1.setContentAreaFilled(false);
         add(b1);
         add(b2);
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds n white spaces to this
     private void addWhiteSpace(int n) {
         for (int i = 0; i < n; i++) {
             JPanel p = new JPanel();

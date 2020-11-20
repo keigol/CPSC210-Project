@@ -53,6 +53,8 @@ public class WorkoutTrackerGUI extends JFrame {
         return mainScreen;
     }
 
+    // MODIFIES: this
+    // EFFECTS:  creates persistence dialogs
     private void initializePersistenceDialogs() {
         loadDataPrompt();
 
@@ -64,6 +66,8 @@ public class WorkoutTrackerGUI extends JFrame {
         });
     }
 
+    // MODIFIES: this
+    // EFFECTS: adds main components to this
     private void initializeScreenComponents() {
         mainScreen = new MainScreen(this);
         sideMenu = new SideMenu(this);
