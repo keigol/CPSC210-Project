@@ -23,5 +23,10 @@ So with this project, I can make something that will be of use to me and others 
 ###Phase 4: Task 2
 A HashMap was used in the class MainScreen. This map has a card as its value, and the cards title as the key.
 
+###Phase 4: Task 3
+If I had more time I would:
+- Refactor the GUI into many more classes to increase cohesion and to follow the single responsibility principle
+- Create more methods to increase cohesion and to follow the single responsibility principle
+- Create more abstract classes and interfaces to reduce repeated code in the GUI
 
 
